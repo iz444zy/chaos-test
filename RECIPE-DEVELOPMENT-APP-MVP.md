@@ -869,7 +869,7 @@ Keep the UI limited to the screens necessary for the core workflow.
 ## Screen 1 — Welcome / Authentication
 
 ```text
-Recipe Lab
+BatchBook
 
 Develop recipes.
 Record every attempt.
