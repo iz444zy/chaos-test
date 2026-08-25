@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -44,10 +45,12 @@ from .services import import_recipe
 
 Base.metadata.create_all(bind=engine)
 migrate_database()
-app = FastAPI(title="Recipe Development Tracker")
+cors_origins = [origin.strip() for origin in os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:5173").split(",") if origin.strip()]
+
+app = FastAPI(title="BatchBook")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
